@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 mongoose.connect(process.env.MONGO_URI)
+mongoose.connection.once('open', () => console.log('connected to db'))
 
 app.use('/graphql', gqlMiddleWare({
     schema: schema,
